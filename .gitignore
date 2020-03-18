@@ -1,0 +1,20 @@
+# track this file .gitignore (i.e. do NOT ignore it)
+!.gitignore
+!.github
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# track readme.md in the root (i.e. do NOT ignore it)
+!README.md
+
+# ignore Editor files
+.vscode/
+
+public/
+
+# ignore flaskenv file
+.flaskenv
+
+# ignore mac custom attributes file
+*.DS_Store
