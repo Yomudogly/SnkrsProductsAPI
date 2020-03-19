@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "67c0cfa37d4da79c4bc26a5fd458f09ae7165318ccf589d0fc77b4ce8182d57b"
+            "sha256": "38ec1f1ae85c1c6292de47d3ca5b3bb2b0c235f362eddf448631b967fb54a3f5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -45,10 +45,10 @@
         },
         "click": {
             "hashes": [
-                "sha256:2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13",
-                "sha256:5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"
+                "sha256:8a18b4ea89d8820c5d0c7da8a64b2c324b4dabb695804dbfea19b9be9d88c0cc",
+                "sha256:e345d143d80bf5ee7534056164e5e112ea5e22716bbb1ce727941f4c8b471b9a"
             ],
-            "version": "==7.0"
+            "version": "==7.1.1"
         },
         "dnspython": {
             "hashes": [
@@ -72,6 +72,14 @@
                 "sha256:f744d0557cb04cafed733cfa96e7373b46263d4cf79a2c5988c65085f360d873"
             ],
             "version": "==0.9.4"
+        },
+        "flask-caching": {
+            "hashes": [
+                "sha256:3d0bd13c448c1640334131ed4163a12aff7df2155e73860f07fc9e5e75de7126",
+                "sha256:54b6140bb7b9f3e63d009ff08b03bacd84eefb1af1d30af06b4a6bc3c16fa3b2"
+            ],
+            "index": "pypi",
+            "version": "==1.8.0"
         },
         "flask-cors": {
             "hashes": [
@@ -293,11 +301,11 @@
         },
         "python-dotenv": {
             "hashes": [
-                "sha256:8429f459fc041237d98c9ff32e1938e7e5535b5ff24388876315a098027c3a57",
-                "sha256:ca9f3debf2262170d6f46571ce4d6ca1add60bb93b69c3a29dcb3d1a00a65c93"
+                "sha256:81822227f771e0cab235a2939f0f265954ac4763cafd806d845801c863bf372f",
+                "sha256:92b3123fb2d58a284f76cc92bfe4ee6c502c32ded73e8b051c4f6afc8b6751ed"
             ],
             "index": "pypi",
-            "version": "==0.11.0"
+            "version": "==0.12.0"
         },
         "pytz": {
             "hashes": [

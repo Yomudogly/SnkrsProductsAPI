@@ -4,6 +4,7 @@ from flask_mongoengine import MongoEngine
 from flask_restplus import Api
 from flask_jwt_simple import JWTManager
 from flask_cors import CORS
+from flask_caching import Cache
 
 
 app = Flask(__name__)
@@ -19,7 +20,7 @@ app.register_blueprint(blueprint)
 app.config.from_object(Config)
 
 jwt = JWTManager(app)
-
+cache = Cache(app)
 db = MongoEngine()
 db.init_app(app)
 #api.init_app(app)

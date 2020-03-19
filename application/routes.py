@@ -1,4 +1,4 @@
-from application import app, db, api
+from application import app, db, api, cache
 from flask import render_template, request, Response, json, jsonify, flash, redirect, url_for, session
 import datetime
 import time
@@ -19,6 +19,7 @@ class ProductsGetAll(Resource):
     
     # GET ALL
     # @jwt_required
+    @cache.cached(timeout=50)
     def get(self):
         return jsonify(Products.objects.all())
     
@@ -30,15 +31,49 @@ class ProductById(Resource):
     
     # GET ONE
     # @jwt_required
+    @cache.cached(timeout=50)
     def get(self, idx: int):
         return jsonify(Products.objects(id=idx))
     
     
+@api.route('/products/<txt>+<txt_1>')
+class ProductBy2Names(Resource):
+    
+    # GET ONE
+    # @jwt_required
+    @cache.cached(timeout=50)
+    def get(self, txt: str, txt_1: str):
+    
+        resp = Products.objects.aggregate(*[
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_1 + '.*', 
+                        '$options':'i'
+                    }
+                }
+            }
+        ])
+        
+        resp_string = encoder.encode(list(resp))
+        
+        return json.loads(resp_string), 200
+    
+
 @api.route('/products/<name>')
 class ProductByName(Resource):
     
     # GET ONE
     # @jwt_required
+    @cache.cached(timeout=50)
     def get(self, name: str):
     
         resp = Products.objects.aggregate(*[
@@ -55,13 +90,14 @@ class ProductByName(Resource):
         resp_string = encoder.encode(list(resp))
         
         return json.loads(resp_string), 200
-    
-    
+  
+  
 @api.route('/products/slug/<slug>')
 class ProductBySlug(Resource):
     
     # GET ONE
     # @jwt_required
+    @cache.cached(timeout=50)
     def get(self, slug: str):
     
         resp = Products.objects.aggregate(*[
