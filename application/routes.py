@@ -44,7 +44,8 @@ class ProductByName(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt + '.*'
+                        '$regex': '.*' + txt + '.*', 
+                        '$options':'i'
                     }
                 }
             }
