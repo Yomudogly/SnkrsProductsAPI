@@ -26,12 +26,35 @@ class ProductsGetAll(Resource):
         
 
 @api.route('/products/<int:idx>')
-class CompanyGetUpdateDelete(Resource):
+class ProductById(Resource):
     
     # GET ONE
     # @jwt_required
     def get(self, idx: int):
         return jsonify(Products.objects(id=idx))
+    
+@api.route('/products/<txt>')
+class ProductByName(Resource):
+    
+    # GET ONE
+    # @jwt_required
+    def get(self, txt: str):
+    
+        resp = Products.objects.aggregate(*[
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt + '.*'
+                    }
+                }
+            }
+        ])
+        
+        resp_string = encoder.encode(list(resp))
+        
+        return json.loads(resp_string), 200
+
+        
     
 
 
