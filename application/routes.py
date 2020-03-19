@@ -33,18 +33,42 @@ class ProductById(Resource):
     def get(self, idx: int):
         return jsonify(Products.objects(id=idx))
     
-@api.route('/products/<txt>')
+    
+@api.route('/products/<name>')
 class ProductByName(Resource):
     
     # GET ONE
     # @jwt_required
-    def get(self, txt: str):
+    def get(self, name: str):
     
         resp = Products.objects.aggregate(*[
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt + '.*', 
+                        '$regex': '.*' + name + '.*', 
+                        '$options':'i'
+                    }
+                }
+            }
+        ])
+        
+        resp_string = encoder.encode(list(resp))
+        
+        return json.loads(resp_string), 200
+    
+    
+@api.route('/products/slug/<slug>')
+class ProductBySlug(Resource):
+    
+    # GET ONE
+    # @jwt_required
+    def get(self, slug: str):
+    
+        resp = Products.objects.aggregate(*[
+            {
+                '$match': {
+                    'slug': {
+                        '$regex': '.*' + slug + '.*', 
                         '$options':'i'
                     }
                 }
