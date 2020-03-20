@@ -60,8 +60,16 @@ class ProductBy2Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt + '.*' + '.*' + txt_ + '.*',
-                        '$options': 'i'
+                        '$regex': '.*' + txt + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_ + '.*', 
+                        '$options':'i'
                     }
                 }
             }
@@ -85,7 +93,23 @@ class ProductBy3Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt + '.*' + '.*' + txt_ + '.*' + '.*' + txt_1 + '.*', 
+                        '$regex': '.*' + txt + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_ + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_1 + '.*', 
                         '$options':'i'
                     }
                 }
@@ -109,7 +133,31 @@ class ProductBy4Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt + '.*' + '.*' + txt_ + '.*' + '.*' + txt_1 + '.*' + '.*' + txt_2 + '.*', 
+                        '$regex': '.*' + txt + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_ + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_1 + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_2 + '.*', 
                         '$options':'i'
                     }
                 }
@@ -133,7 +181,39 @@ class ProductBy5Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt + '.*' + '.*' + txt_ + '.*' + '.*' + txt_1 + '.*' + '.*' + txt_2 + '.*' + '.*' + txt_3 + '.*', 
+                        '$regex': '.*' + txt + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_ + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_1 + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_2 + '.*', 
+                        '$options':'i'
+                    }
+                }
+            },
+            {
+                '$match': {
+                    'name': {
+                        '$regex': '.*' + txt_3 + '.*', 
                         '$options':'i'
                     }
                 }
@@ -141,7 +221,6 @@ class ProductBy5Words(Resource):
         ])
         
         resp_string = encoder.encode(list(resp))
-            
         
         return json.loads(resp_string), 200
     
