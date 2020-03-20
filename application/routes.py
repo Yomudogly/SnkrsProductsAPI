@@ -24,19 +24,6 @@ class ProductsGetAll(Resource):
         return jsonify(Products.objects.all())
     
     
-        
-
-@api.route('/products/<int:idx>')
-class ProductById(Resource):
-    
-    # GET ONE BY INDEX
-    # @jwt_required
-    @cache.cached(timeout=50)
-    def get(self, idx: int):
-        return jsonify(Products.objects(id=idx))
-    
- 
-    
 @api.route('/products/<txt>')
 class ProductByWord(Resource):
     
@@ -237,6 +224,17 @@ class ProductBy5Words(Resource):
         
         return json.loads(resp_string), 200
     
+
+
+
+# @api.route('/products/<int:idx>')
+# class ProductById(Resource):
+    
+#     # GET ONE BY INDEX
+#     # @jwt_required
+#     @cache.cached(timeout=50)
+#     def get(self, idx: int):
+#         return jsonify(Products.objects(id=idx))
   
   
 # @api.route('/products/slug/<slug>')
