@@ -168,6 +168,30 @@ class ProductBy6Words(Resource):
         return json.loads(resp_string), 200
     
 
+@api.route('/products/<txt>+<txt_>+<txt_1>+<txt_2>+<txt_3>+<txt_4>+<txt_5>')
+class ProductBy7Words(Resource):
+    
+    # GET PRODUCTS SEARCH BY 6 MATCHES IN NAME
+    # @jwt_required
+    @cache.cached(timeout=50)
+    def get(self, txt: str, txt_: str, txt_1: str, txt_2: str, txt_3: str, txt_4: str, txt_5: str):
+    
+        resp = Products.objects.aggregate(*[
+            {
+                '$match': {
+                    'name': {
+                        '$regex': f'(?=.*{txt}.)(?=.*{txt_}.)(?=.*{txt_1}.)(?=.*{txt_2}.)(?=.*{txt_3}.)(?=.*{txt_4}.)(?=.*{txt_5}.).*', 
+                        '$options':'i'
+                    }
+                }
+            }
+        ])
+        
+        resp_string = encoder.encode(list(resp))
+        
+        return json.loads(resp_string), 200
+    
+
 
 
 # @api.route('/products/<int:idx>')
