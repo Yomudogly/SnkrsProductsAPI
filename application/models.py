@@ -9,7 +9,7 @@ class Products(db.Document):
     company_id = db.StringField( max_lenght=50 )
     product_id = db.StringField( max_lenght=50 )
     discount_id = db.StringField( max_lenght=50 )
-    name = db.StringField( max_lenght=50 )
+    name = db.StringField( max_lenght=256 )
     position = db.StringField( max_lenght=50 )
     brand_id = db.StringField( max_lenght=50 )
     brand_name = db.StringField( max_lenght=50 )

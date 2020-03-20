@@ -60,15 +60,7 @@ class ProductBy2Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt + '.*', 
-                        '$options':'i'
-                    }
-                }
-            },
-            {
-                '$match': {
-                    'name': {
-                        '$regex': '.*' + txt_ + '.*', 
+                        '$regex': '(?=.*' + txt + ')(?=.*' + txt_ + ').*', 
                         '$options':'i'
                     }
                 }
@@ -93,23 +85,7 @@ class ProductBy3Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt + '.*', 
-                        '$options':'i'
-                    }
-                }
-            },
-            {
-                '$match': {
-                    'name': {
-                        '$regex': '.*' + txt_ + '.*', 
-                        '$options':'i'
-                    }
-                }
-            },
-            {
-                '$match': {
-                    'name': {
-                        '$regex': '.*' + txt_1 + '.*', 
+                        '$regex': '(?=.*' + txt + ')(?=.*' + txt_ + ')(?=.*' + txt_1 + ').*', 
                         '$options':'i'
                     }
                 }
@@ -133,35 +109,11 @@ class ProductBy4Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt + '.*', 
+                        '$regex': '(?=.*' + txt + ')(?=.*' + txt_ + ')(?=.*' + txt_1 + ')(?=.*' + txt_2 + ').*', 
                         '$options':'i'
                     }
                 }
-            },
-            {
-                '$match': {
-                    'name': {
-                        '$regex': '.*' + txt_ + '.*', 
-                        '$options':'i'
-                    }
-                }
-            },
-            {
-                '$match': {
-                    'name': {
-                        '$regex': '.*' + txt_1 + '.*', 
-                        '$options':'i'
-                    }
-                }
-            },
-            {
-                '$match': {
-                    'name': {
-                        '$regex': '.*' + txt_2 + '.*', 
-                        '$options':'i'
-                    }
-                }
-            }
+            }  
         ])
         
         resp_string = encoder.encode(list(resp))
@@ -181,39 +133,30 @@ class ProductBy5Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt + '.*', 
+                        '$regex': '(?=.*' + txt + ')(?=.*' + txt_ + ')(?=.*' + txt_1 + ')(?=.*' + txt_2 + ')(?=.*' + txt_3 + ').*', 
                         '$options':'i'
                     }
                 }
-            },
+            }
+        ])
+        
+        resp_string = encoder.encode(list(resp))
+        
+        return json.loads(resp_string), 200
+    
+@api.route('/products/<txt>+<txt_>+<txt_1>+<txt_2>+<txt_3>+<txt_4>')
+class ProductBy6Words(Resource):
+    
+    # GET PRODUCTS SEARCH BY 6 MATCHES IN NAME
+    # @jwt_required
+    @cache.cached(timeout=50)
+    def get(self, txt: str, txt_: str, txt_1: str, txt_2: str, txt_3: str, txt_4: str):
+    
+        resp = Products.objects.aggregate(*[
             {
                 '$match': {
                     'name': {
-                        '$regex': '.*' + txt_ + '.*', 
-                        '$options':'i'
-                    }
-                }
-            },
-            {
-                '$match': {
-                    'name': {
-                        '$regex': '.*' + txt_1 + '.*', 
-                        '$options':'i'
-                    }
-                }
-            },
-            {
-                '$match': {
-                    'name': {
-                        '$regex': '.*' + txt_2 + '.*', 
-                        '$options':'i'
-                    }
-                }
-            },
-            {
-                '$match': {
-                    'name': {
-                        '$regex': '.*' + txt_3 + '.*', 
+                        '$regex': '(?=.*' + txt + ')(?=.*' + txt_ + ')(?=.*' + txt_1 + ')(?=.*' + txt_2 + ')(?=.*' + txt_3 + ')(?=.*' + txt_4 + ').*', 
                         '$options':'i'
                     }
                 }
