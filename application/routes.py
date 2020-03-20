@@ -60,7 +60,7 @@ class ProductBy2Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '(?=.*' + txt + ')(?=.*' + txt_ + ').*', 
+                        '$regex': f'(?=.*{txt}.)(?=.*{txt_}.).*', 
                         '$options':'i'
                     }
                 }
@@ -85,7 +85,7 @@ class ProductBy3Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '(?=.*' + txt + ')(?=.*' + txt_ + ')(?=.*' + txt_1 + ').*', 
+                        '$regex': f'(?=.*{txt}.)(?=.*{txt_}.)(?=.*{txt_1}.).*', 
                         '$options':'i'
                     }
                 }
@@ -109,7 +109,7 @@ class ProductBy4Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '(?=.*' + txt + ')(?=.*' + txt_ + ')(?=.*' + txt_1 + ')(?=.*' + txt_2 + ').*', 
+                        '$regex': f'(?=.*{txt}.)(?=.*{txt_}.)(?=.*{txt_1}.)(?=.*{txt_2}.).*', 
                         '$options':'i'
                     }
                 }
@@ -133,7 +133,7 @@ class ProductBy5Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '(?=.*' + txt + ')(?=.*' + txt_ + ')(?=.*' + txt_1 + ')(?=.*' + txt_2 + ')(?=.*' + txt_3 + ').*', 
+                        '$regex': f'(?=.*{txt}.)(?=.*{txt_}.)(?=.*{txt_1}.)(?=.*{txt_2}.)(?=.*{txt_3}.).*', 
                         '$options':'i'
                     }
                 }
@@ -156,7 +156,7 @@ class ProductBy6Words(Resource):
             {
                 '$match': {
                     'name': {
-                        '$regex': '(?=.*' + txt + ')(?=.*' + txt_ + ')(?=.*' + txt_1 + ')(?=.*' + txt_2 + ')(?=.*' + txt_3 + ')(?=.*' + txt_4 + ').*', 
+                        '$regex': f'(?=.*{txt}.)(?=.*{txt_}.)(?=.*{txt_1}.)(?=.*{txt_2}.)(?=.*{txt_3}.)(?=.*{txt_4}.).*', 
                         '$options':'i'
                     }
                 }
